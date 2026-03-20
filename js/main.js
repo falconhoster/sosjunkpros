@@ -283,7 +283,13 @@
 
             const providers = [
                 {
-                    url: 'https://ipwho.is/',
+                    url: 'https://freeipapi.com/api/json',
+                    extractCity: function(data) {
+                        return typeof data.cityName === 'string' ? data.cityName.trim() : '';
+                    }
+                },
+                {
+                    url: 'https://geolocation-db.com/json/',
                     extractCity: function(data) {
                         return typeof data.city === 'string' ? data.city.trim() : '';
                     }
