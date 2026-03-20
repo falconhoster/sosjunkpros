@@ -95,6 +95,19 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.02em;
 }
 
+.geo-city-line,
+.geo-city-value {
+    display: none;
+}
+
+.geo-city-line.is-visible {
+    display: inline;
+}
+
+.geo-city-value.is-visible {
+    display: block;
+}
+
 .section-header {
     text-align: center;
     margin-bottom: 56px;

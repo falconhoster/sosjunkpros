@@ -18,6 +18,7 @@
             this.serviceCards = document.querySelectorAll('.service-card');
             this.lazyImages = document.querySelectorAll('img[loading="lazy"]');
             this.heroCity = document.getElementById('heroCity');
+            this.heroCityLine = document.getElementById('heroCityLine');
             this.contactCity = document.getElementById('contactCity');
         },
 
@@ -244,10 +245,14 @@
 
             if (this.heroCity) {
                 this.heroCity.textContent = city;
+                if (this.heroCityLine) {
+                    this.heroCityLine.classList.add('is-visible');
+                }
             }
 
             if (this.contactCity) {
                 this.contactCity.textContent = city;
+                this.contactCity.classList.add('is-visible');
             }
         },
 
