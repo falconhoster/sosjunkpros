@@ -281,33 +281,16 @@
         fetchVisitorCity: async function() {
             if (!window.fetch) return '';
 
-            const providers = [
-                {
-                    url: 'https://freeipapi.com/api/json',
-                    extractCity: function(data) {
-                        return typeof data.cityName === 'string' ? data.cityName.trim() : '';
-                    }
-                },
-                {
-                    url: 'https://geolocation-db.com/json/',
-                    extractCity: function(data) {
-                        return typeof data.city === 'string' ? data.city.trim() : '';
-                    }
-                },
-                {
-                    url: 'https://get.geojs.io/v1/ip/geo.json',
-                    extractCity: function(data) {
-                        return typeof data.city === 'string' ? data.city.trim() : '';
-                    }
+            const city = await this.fetchCityFromProvider({
+                url: '/geo.php',
+                extractCity: function(data) {
+                    return typeof data.city === 'string' ? data.city.trim() : '';
                 }
-            ];
+            });
 
-            for (let i = 0; i < providers.length; i += 1) {
-                const city = await this.fetchCityFromProvider(providers[i]);
-                if (city) {
-                    this.cacheVisitorCity(city);
-                    return city;
-                }
+            if (city) {
+                this.cacheVisitorCity(city);
+                return city;
             }
 
             return '';
