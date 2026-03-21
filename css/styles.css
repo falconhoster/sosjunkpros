@@ -327,6 +327,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mobile-call-bar {
+    display: none;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -1358,6 +1359,18 @@ a.contact-value {
     }
     
     body {
-        padding-bottom: 80px;
+        padding-bottom: 96px;
     }
+
+    .service-page .header-cta {
+        display: flex;
+    }
+
+    .service-page .hero-scroll-indicator {
+        display: none;
+    }
+}
+
+.service-page .mobile-menu-toggle {
+    display: none;
 }
