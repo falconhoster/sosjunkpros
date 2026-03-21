@@ -1,6 +1,38 @@
 (function() {
     'use strict';
 
+    function gtag_report_conversion(url) {
+        var callback = function() {
+            if (typeof(url) != 'undefined') {
+                window.location = url;
+            }
+        };
+
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18012488938/4CQ0CJzvmIkcEOqJg41D',
+                'value': 1.0,
+                'currency': 'USD',
+                'event_callback': callback
+            });
+            return false;
+        }
+
+        if (typeof(url) != 'undefined') {
+            window.location = url;
+        }
+        return false;
+    }
+
+    function bindConversionTracking() {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                gtag_report_conversion(link.href);
+            });
+        });
+    }
+
     const APP = {
         init: function() {
             this.cacheElements();
@@ -336,6 +368,7 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         APP.init();
+        bindConversionTracking();
     });
 
 })();
